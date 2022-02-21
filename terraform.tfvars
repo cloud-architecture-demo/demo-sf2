@@ -1,4 +1,4 @@
-project_name            = "demo-sf2"
+project_name            = "demosf2"
 cluster_name            = "demo-sf2"
 
 region                  = "us-central1"

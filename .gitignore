@@ -1,0 +1,13 @@
+secrets.tfvars
+secrets
+install_prisma.sh
+.idea/*
+.terraform
+
+_credentials
+_credentials/*
+
+
+terraform.tfstate*
+*idea*
+workspace.xml

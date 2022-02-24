@@ -1,17 +1,15 @@
 
-/*
+
 resource "random_string" "cluster_service_account_suffix" {
   upper   = false
   lower   = true
   special = false
   length  = 4
 }
-*/
 
 resource "google_service_account" "cluster_service_account" {
   project      = google_project.project.project_id
-  //account_id   = "tf-gke-${substr(var.cluster_name, 0, min(15, length(var.cluster_name)))}-${random_string.cluster_service_account_suffix.result}"
-  account_id   = "tf-gke-${substr(var.cluster_name, 0, min(15, length(var.cluster_name)))}"
+  account_id   = "tf-gke-${substr(var.cluster_name, 0, min(15, length(var.cluster_name)))}-${random_string.cluster_service_account_suffix.result}"
   display_name = "Terraform-managed service account for cluster ${var.cluster_name}"
 }
 

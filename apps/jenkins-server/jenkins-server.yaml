@@ -17,7 +17,7 @@ spec:
   jenkinsAPISettings:
     authorizationStrategy: createUser
   master:
-    disableCSRFProtection: false
+    disableCSRFProtection: true
     basePlugins:
     - name: kubernetes
       version: "1.31.3"

@@ -75,13 +75,6 @@ variable "vpc_routing_mode" {
   description = "REGIONAL or GLOBAL"
 }
 
-
-/*
-variable "kms_key" {
-  description = "The name of the cluster"
-}
-*/
-
 variable "acm_location" {
   description = "acm_location"
 }

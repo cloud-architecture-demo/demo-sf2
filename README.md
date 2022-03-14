@@ -49,7 +49,16 @@ cd ./demo-sf2
 
 <br>
 
-Step 3. You will need to copy the file `secrets.tfvars.example` and name it `secrets.tfvars`. Be sure to replace the default values with those relevant to you.
+Step 3. Authenticate your local gcloud client with Google Cloud Platform APIs.
+```
+gcloud auth login
+```
+>Follow the official documentation to set this up, here:
+> https://cloud.google.com/sdk/gcloud/reference/auth/login
+
+<br>
+
+Step 4: You will need to copy the file `secrets.tfvars.example` and name it `secrets.tfvars`. Be sure to replace the default values with those relevant to you.
 
 ```
 ## GKE architecture demo sf2 secrets
@@ -58,15 +67,16 @@ billing_account = "012ABC-345DEF-678GHI"
 > Change the value of **_billing_account_** to match your own Google Cloud Platform Billing Account ID.
 >> If you aren't sure what your Google Cloud Platform Billing Account ID is, you can run the following gcloud command to display it:
 >> ```
->> gcloud beta billing accounts list
+>> gcloud beta billing accounts list 
 >> ```
-
-<br>
-
-Step 4: Authenticate your local gcloud client with Google Cloud Platform APIs.
-
->Follow the official documentation to set this up, here:
-> https://cloud.google.com/sdk/gcloud/reference/auth/login
+>> 
+>>>> Additionally, this one-liner can do the job, if you're gcloud client is authenticated already:
+>>>> ```buildoutcfg
+>>>> echo "billing_account = \"$(gcloud beta billing accounts list | sed -n '2p' | awk -F ' ' '{ print $1 }')\"" > secrets.tfvars
+>>>> ```
+>>>> **CAUTION:**
+>>>> 
+>>>> Running the above will overwrite your **secrets.tfvars** file, consider making a backup first!
 
 <br>
 

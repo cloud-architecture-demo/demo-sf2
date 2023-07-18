@@ -20,11 +20,11 @@ spec:
     disableCSRFProtection: true
     basePlugins:
     - name: kubernetes
-      version: "1.31.3"
+      version: "1.5.1"
     - name: kubernetes-cli
-      version: "1.10.3"
+      version: "1.12.0"
     - name: workflow-job
-      version: "1145.v7f2433caa07f"
+      version: "1295.v395eb_7400005"
     - name: workflow-aggregator
       version: "2.6"
     - name: git
@@ -32,13 +32,16 @@ spec:
     - name: job-dsl
       version: "1.78.3"
     - name: configuration-as-code
-      version: "1.55.1"
+      version: "1625.v27444588cc3d"
     - name: kubernetes-credentials-provider
       version: "0.20"
     containers:
       - name: jenkins-master
-        image: jenkins/jenkins:2.319.2-lts-alpine
+        image: jenkins/jenkins:2.375.2-lts
         imagePullPolicy: Always
+        ports:
+          - containerPort: 8080
+          - containerPort: 50000
         livenessProbe:
           failureThreshold: 12
           httpGet:
@@ -116,7 +119,8 @@ spec:
     repositoryBranch: demo-sf2
     repositoryUrl: https://github.com/cloud-architecture-demo/sock-shop-configuration.git
 ---
-apiVersion: networking.k8s.io/v1beta1
+#apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: jenkins-server-ing
@@ -125,6 +129,16 @@ spec:
   - http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
-          serviceName: jenkins-operator-http-prod-jenkins
-          servicePort: 8080
+          service:
+            name: jenkins-operator-http-prod-jenkins
+            port:
+              number: 8080
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: jenkins-operator-slave-prod-jenkins
+            port:
+              number: 50000

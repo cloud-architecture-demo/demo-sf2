@@ -32,7 +32,7 @@ resource "google_gke_hub_feature_membership" "feature_member" {
   membership    = google_gke_hub_membership.membership.membership_id
 
   configmanagement {
-    version = "1.9.1"
+    version = "1.15.2"
     config_sync {
       source_format = "hierarchy"
       //source_format = "unstructured"

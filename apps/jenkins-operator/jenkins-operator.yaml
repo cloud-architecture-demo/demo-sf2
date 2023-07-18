@@ -3705,7 +3705,7 @@ spec:
         - /manager
         args:
         - --leader-elect
-        image: virtuslab/jenkins-operator:v0.6.0
+        image: virtuslab/jenkins-operator:60b8ee5
         name: jenkins-operator
         imagePullPolicy: IfNotPresent
         securityContext:
@@ -3715,13 +3715,13 @@ spec:
             path: /healthz
             port: 8081
           initialDelaySeconds: 15
-          periodSeconds: 20
+          periodSeconds: 25
         readinessProbe:
           httpGet:
             path: /readyz
             port: 8081
           initialDelaySeconds: 5
-          periodSeconds: 10
+          periodSeconds: 15
         resources:
           limits:
             cpu: 100m

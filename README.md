@@ -85,7 +85,7 @@ Step 5: Deploy demo-sf2 to Google Cloud Platform
 
 Run the following commands in the order listed, one at a time.
 ```
-terraform init .
+terraform init
 terraform plan -var-file secrets.tfvars
 terraform apply -var-file secrets.tfvars
 ```
@@ -131,7 +131,7 @@ kubectl get service jenkins-operator-http-prod-jenkins
 
 Step 9: Use kubectl to display the `jenkins-operator` user's password to log into the Jenkins CI/CD Server.
 ```
-kubectl get service jenkins-operator-http-prod-jenkins
+kubectl get secret jenkins-operator-credentials-prod-jenkins -o 'jsonpath={.data.password}' | base64 -d
 ```
 
 

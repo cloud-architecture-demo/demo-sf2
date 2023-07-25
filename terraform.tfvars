@@ -15,6 +15,6 @@ vpc_routing_mode        = "REGIONAL"
 
 acm_location            = "global"
 acm_sync_repo           = "https://github.com/cloud-architecture-demo/sock-shop-configuration/"
-acm_sync_branch         = "main"
+acm_sync_branch         = "demo-sf2"
 acm_policy_dir          = "anthos-configs"
 acm_secret_type         = "none"
